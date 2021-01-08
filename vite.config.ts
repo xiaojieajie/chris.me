@@ -10,10 +10,11 @@ module.exports = {
     '/@/': pathResolve('src'),
     '/@c/': pathResolve('src/components'),
   },
+  base: './',
   // outDir: pathResolve(`../build${pathName}`),
-  // optimizeDeps: {
-  //   include: ['ant-design-vue', '@ant-design-vue/use', '@ant-design/icons-vue', 'vue-socket.io'],
-  // },
+  optimizeDeps: {
+    // include: ['pixi.js'],
+  },
   proxy: {
     '/api': {
       target: 'http://localhost:1324/api',
