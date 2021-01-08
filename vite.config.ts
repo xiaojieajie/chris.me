@@ -6,12 +6,11 @@ const pathName = '/blog'
 
 module.exports = {
   port: 1111,
-  base: '.',
   alias: {
     '/@/': pathResolve('src'),
     '/@c/': pathResolve('src/components'),
   },
-  outDir: pathResolve(`../build${pathName}`),
+  // outDir: pathResolve(`../build${pathName}`),
   // optimizeDeps: {
   //   include: ['ant-design-vue', '@ant-design-vue/use', '@ant-design/icons-vue', 'vue-socket.io'],
   // },
