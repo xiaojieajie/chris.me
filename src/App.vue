@@ -122,22 +122,47 @@
     <img class="element element-2"
          src="/@/assets/about/bubbles.png"
          style="transform: translate(0px, 429px); transition: transform 0.1s ease 0s; will-change: transform;">
-    <canvas width="860"
+    <div style="width:100%;height:500px;"></div>
+    <!-- <canvas width="860"
             height="544"
-            style="touch-action: auto; transform: scale(1); cursor: inherit;"></canvas>
+            style="touch-action: auto; transform: scale(1); cursor: inherit;display:none;"></canvas> -->
+  </section>
+  <section class="partners">
+    <div class="submarine">
+      <img class="element element-1"
+           src="/@/assets/elements/submarine.png"
+           style="transform: translate(-76px, 0px); transition: transform 0.1s ease 0s; will-change: transform;">
+    </div>
+    <img class="element element-2"
+         src="/@/assets/about/bubbles.png"
+         style="transform: translate(0px, 429px); transition: transform 0.1s ease 0s; will-change: transform;">
+    <img class="element element-3"
+         src="/@/assets/about/bubbles.png"
+         style="transform: translate(0px, 429px); transition: transform 0.1s ease 0s; will-change: transform;">
+  </section>
+  <section class="mingling-swag">
+
+  </section>
+  <section class="footer">
+    <div class="angler">
+      <img class="element-1"
+           src="/@/assets/elements/angler-fish.png">
+    </div>
   </section>
 </template>
 
 <script>
 import * as PIXI from 'pixi.js'
 import { nextTick } from 'vue'
+import sbImg from '/@/assets/backgrounds/schedule-bottom.jpg'
+import cloud from '/@/assets/about/cloud.jpg'
 function initPixi() {
-  let image = new PIXI.Sprite.from('./assets/backgrounds/schedule-bottom.jpg')
-  displacementSprite = new PIXI.Sprite.from('./assets/about/cloud.jpg')
-  let canvas = document.getElementById('waves'),
-  width = window.innerWidth,
-  height = width * 0.6333,
-  app = new PIXI.Application({
+  let image = new PIXI.Sprite.from(sbImg)
+  let displacementSprite = new PIXI.Sprite.from(cloud)
+  let canvas = document.getElementById('waves')
+  let width = window.innerWidth
+  let height = width * 0.6333
+  let app = new PIXI.Application({
     width: width,
     height: height,
     autoPreventDefault: false
@@ -150,7 +175,9 @@ function initPixi() {
   image.height = height
   app.stage.addChild(image)
 
-  displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite)
+  let displacementFilter = new PIXI.filters.DisplacementFilter(
+    displacementSprite
+  )
   displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT
   app.stage.addChild(displacementSprite)
   app.stage.filters = [displacementFilter]
@@ -160,12 +187,14 @@ function initPixi() {
   app.renderer.plugins.interaction.autoPreventDefault = false
   displacementSprite.scale.x = 4
   displacementSprite.scale.y = 3
-  animate()
+  animate(displacementSprite)
 }
-function animate() {
+function animate(displacementSprite) {
   displacementSprite.x += 4
   displacementSprite.y += 6
-  requestAnimationFrame(animate)
+  requestAnimationFrame(() => {
+    animate(displacementSprite)
+  })
 }
 
 export default {
@@ -179,7 +208,7 @@ export default {
     // const html = document.querySelector('html') as HTMLElement
     // html.classList[theme ? 'add' : 'remvoe']('dark')
 
-    nextTick(()=>{
+    nextTick(() => {
       initPixi()
     })
   }
@@ -458,14 +487,110 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  canvas {
-    margin-top: -20vw;
-    width: 100vw;
-    height: calc(100vw * 0.6333);
-    background-color: #051228;
+  // canvas {
+  //   margin-top: -20vw;
+  //   width: 100vw;
+  //   height: calc(100vw * 0.6333);
+  //   background-color: #051228;
+  // }
+  .element {
+    position: absolute;
+    z-index: 0;
+    &.element-1 {
+      top: 0;
+      right: 20px;
+    }
+    &.element-2 {
+      bottom: 0;
+      width: 100%;
+    }
+  }
+}
+.partners {
+  background-color: #020221;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 1000px;
+  position: relative;
+  .element {
+    position: absolute;
+    z-index: 0;
+    &.element-2 {
+      top: 0;
+      width: 100%;
+    }
+    &.element-3 {
+      bottom: 0;
+      width: 100%;
+    }
+  }
+  .submarine {
+    height: 503px;
+    width: 70vw;
+    position: absolute;
+    left: 0;
+    top: 40%;
+    z-index: 0;
+    overflow-x: hidden;
+  }
+}
+.mingling-swag {
+  background-color: #020221;
+  background-image: url(./assets/backgrounds/partners-bottom.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100%;
+  position: relative;
+  display: flex;
+  color: #ffffff;
+  padding: 0 12vw 580px;
+}
+.footer {
+  background: #110c2a;
+  background-image: url(./assets/backgrounds/footer-bottom.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 700px;
+  position: relative;
+  .angler {
+    position: absolute;
+    right: 0;
+    top: -40px;
+    &::after {
+      content: '';
+      background: #57ffe9;
+      background: radial-gradient(
+        circle,
+        rgba(87, 255, 233, 0.8) 0%,
+        rgba(122, 202, 196, 0) 30%
+      );
+      width: 30%;
+      height: 30%;
+      border-radius: 50%;
+      mix-blend-mode: hard-light;
+      position: absolute;
+      top: 0;
+      left: 3%;
+      transform: scale(1);
+      animation: pulse 2600ms ease-in-out infinite alternate;
+    }
   }
 }
 
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(4.5);
+  }
+}
 @keyframes swimmingFish {
   0% {
     transform: perspective(400px) translate(-1200%, 10%) scale(1);
