@@ -16,6 +16,9 @@
     <img src="/@/assets/clouds/cloud-5.png"
          alt=""
          class="cloud cloud-5">
+    <div style="position:absolute;">
+      <c-button>asd</c-button>
+    </div>
   </section>
   <section id="about"
            class="about">
@@ -152,6 +155,7 @@
 </template>
 
 <script>
+import CButton from '/@c/Button/index.vue'
 import * as PIXI from 'pixi.js'
 import { nextTick } from 'vue'
 import sbImg from '/@/assets/backgrounds/schedule-bottom.jpg'
@@ -199,7 +203,7 @@ function animate(displacementSprite) {
 
 export default {
   name: 'App',
-  components: {},
+  components: { CButton },
   setup() {
     // const theme =
     //   localStorage.theme === 'dark' ||
