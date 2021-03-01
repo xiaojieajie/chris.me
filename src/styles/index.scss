@@ -1,5 +1,10 @@
 @import './tailwind.css';
 
+@font-face{
+  font-family: 'cus';
+  src : url('./font/font.woff2');
+}
+
 html {
   // width: 1500px;
   // overflow: hidden;
@@ -12,12 +17,14 @@ html {
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  // font-family: cus;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
   // color: #2c3e50;
   // margin-top: 60px;
   overflow: hidden;
-
-
+}
+.ft{
+  font-family: 'cus';
 }

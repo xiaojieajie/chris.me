@@ -1,28 +1,9 @@
 <template>
-  <div class="cbutton"
+  <div class="Cbtn"
        :style="style">
-    <span>213</span>
-    <!-- <svg class="next"
-         version="1.1"
-         xmlns="http://www.w3.org/2000/svg"
-         xmlns:xlink="http://www.w3.org/1999/xlink"
-         x="0px"
-         y="0px"
-         viewBox="0 0 23 14"
-         xml:space="preserve">
-      <line x1="22"
-            y1="7"
-            x2="16"
-            y2="1"></line>
-      <line x1="22"
-            y1="7"
-            x2="16"
-            y2="13"></line>
-      <line x1="0"
-            y1="7"
-            x2="23"
-            y2="7"></line>
-    </svg> -->
+    <div class="content">
+      <slot />
+    </div>
     <div class="rect">
       <i class="r r1"></i>
       <i class="r r2"></i>
@@ -33,14 +14,22 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, reactive, computed } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { addUnit } from '/@/utils'
 export default defineComponent({
-  name: 'button',
+  name: 'Cbtn',
   props: {
     color: {
       type: String,
       default: '#fff'
+    },
+    beforeBgColor: {
+      type: String,
+      default: '#fff'
+    },
+    hoverColor: {
+      type: String,
+      default: '#d81b60'
     },
     borderWidth: {
       type: [String, Number],
@@ -55,13 +44,15 @@ export default defineComponent({
       default: (props: any) => props.color
     }
   },
-  components: {},
   setup(props) {
     const style = computed(() => ({
       border: `${addUnit(props.borderWidth)} ${props.borderStyle} ${
         props.borderColor
       }`,
-      color: props.color
+      '--color': props.color,
+      '--borderColor': props.borderColor,
+      '--hoverColor': props.hoverColor,
+      '--beforeBgColor': props.beforeBgColor
     }))
     return { style }
   }
@@ -69,13 +60,12 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
-.cbutton {
+.Cbtn {
   transform: matrix(1, 0, 0, 1, 0, 0);
-  // background: 0 0;
   padding: 15px 26px 15px 33px;
-  // color: #fff;
+  color: var(--color);
   &:hover {
-    color: #d81b60;
+    color: var(--hoverColor);
     transform: translate(2px, 2px);
     transition: color 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
     cursor: pointer;
@@ -87,12 +77,6 @@ export default defineComponent({
       right: -6px;
       bottom: -6px;
     }
-    svg {
-      transform: translateX(4px);
-      line {
-        stroke: #d81b60;
-      }
-    }
   }
   &::before {
     position: absolute;
@@ -101,7 +85,7 @@ export default defineComponent({
     width: 0;
     height: 100%;
     z-index: -1;
-    background: #fff;
+    background: var(--beforeBgColor);
     content: '';
     display: block;
     transition: width 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -114,7 +98,7 @@ export default defineComponent({
     height: 100%;
     .r {
       position: absolute;
-      background: #fff;
+      background: var(--borderColor);
       &.r1 {
         width: 2px;
         height: 6px;
@@ -141,28 +125,11 @@ export default defineComponent({
       }
     }
   }
-  span {
+  .content {
     position: relative;
     z-index: 2;
     display: inline-block;
     vertical-align: middle;
-  }
-  svg {
-    display: inline-block;
-    vertical-align: middle;
-    width: 23px;
-    height: 14px;
-    z-index: 2;
-    margin-left: 35px;
-    margin-top: 0;
-    top: auto;
-    right: auto;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-    line {
-      stroke: #fff;
-      stroke-width: 2px;
-    }
   }
 }
 </style>

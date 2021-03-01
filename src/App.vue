@@ -18,9 +18,11 @@
          alt=""
          class="cloud cloud-5">
     <div style="position:absolute;">
-      <c-button >asd</c-button>
+      <Cbtn><span class="ft">CHRIS</span></Cbtn>
     </div>
+    
   </section>
+  <h1 style="font-size:50px" class="ft">ftCHRIS</h1>
   <section id="about"
            class="about">
     <img src="/@/assets/about/about-fish.png"
@@ -156,7 +158,7 @@
 </template>
 
 <script>
-import CButton from '/@c/Button/index.vue'
+import Cbtn from '/@c/Cbtn/index.vue'
 import Skeleton from '/@c/Skeleton/index.vue'
 import * as PIXI from 'pixi.js'
 import { nextTick } from 'vue'
@@ -205,7 +207,7 @@ function animate(displacementSprite) {
 
 export default {
   name: 'App',
-  components: { CButton, Skeleton },
+  components: { Cbtn, Skeleton },
   setup() {
     // const theme =
     //   localStorage.theme === 'dark' ||
