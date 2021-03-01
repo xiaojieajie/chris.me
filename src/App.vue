@@ -1,4 +1,5 @@
 <template>
+  <!-- <Skeleton /> -->
   <section id="hero"
            class="hero">
     <img src="/@/assets/clouds/cloud-1.png"
@@ -17,7 +18,7 @@
          alt=""
          class="cloud cloud-5">
     <div style="position:absolute;">
-      <c-button>asd</c-button>
+      <c-button >asd</c-button>
     </div>
   </section>
   <section id="about"
@@ -156,6 +157,7 @@
 
 <script>
 import CButton from '/@c/Button/index.vue'
+import Skeleton from '/@c/Skeleton/index.vue'
 import * as PIXI from 'pixi.js'
 import { nextTick } from 'vue'
 import sbImg from '/@/assets/backgrounds/schedule-bottom.jpg'
@@ -203,7 +205,7 @@ function animate(displacementSprite) {
 
 export default {
   name: 'App',
-  components: { CButton },
+  components: { CButton, Skeleton },
   setup() {
     // const theme =
     //   localStorage.theme === 'dark' ||
