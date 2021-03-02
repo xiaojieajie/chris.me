@@ -22,7 +22,7 @@
     </div>
     
   </section>
-  <h1 style="font-size:50px" class="ft">ftCHRIS</h1>
+  <h1 style="font-size:80px" class="ft">Welcome CHRIS BLOG</h1>
   <section id="about"
            class="about">
     <img src="/@/assets/about/about-fish.png"

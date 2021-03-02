@@ -1,8 +1,18 @@
 @import './tailwind.css';
 
-@font-face{
-  font-family: 'cus';
-  src : url('./font/font.woff2');
+@font-face {
+  font-family: 'Big Shoulders Inline Display';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(http://blog.chrisying.cn/font.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(http://blog.chrisying.cn/font2.woff2) format('woff2');
 }
 
 html {
@@ -26,5 +36,8 @@ html {
   overflow: hidden;
 }
 .ft{
-  font-family: 'cus';
+  font-family: 'Big Shoulders Inline Display';
+}
+.ft2{
+  font-family: 'Montserrat';
 }
