@@ -13,4 +13,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+div {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(103, 182, 157);
+}
+</style>

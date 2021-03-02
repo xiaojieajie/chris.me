@@ -1,153 +1,36 @@
 <template>
-  <header>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
+  <Scroll :nested="nested" class="home" @scroll="handleScroll">
+    <div>
+      <h1 v-for="i in 100" :key="i" class="p-8">1111{{ i }}</h1>
     </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-    <h1 class="p-8">111</h1>
-    <el-button>1</el-button>
-    <el-button>默认按钮</el-button>
-    <div class="bg-white dark:bg-black">
-      <h1 class="text-gray-900 dark:text-white">Dark mode</h1>
-      <p class="text-gray-500 dark:text-gray-300">
-        The feature you've all been waiting for.
-      </p>
-    </div>
-  </header>
+  </Scroll>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
+import Scroll from '@c/Scroll/index.vue'
+import { NestedScrollConfig } from '@better-scroll/nested-scroll'
 export default {
   name: 'Home',
-  components: {},
+  components: { Scroll },
   setup() {
     const a = ref(1)
-    return { a }
+    const nested = reactive<Partial<NestedScrollConfig>>({
+      groupId: 'page'
+    })
+    const handleScroll = (pos: any) => {
+      console.log(pos)
+    }
+    return { a, nested, handleScroll }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.home {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgb(143, 170, 217);
+}
+</style>

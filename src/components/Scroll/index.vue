@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, nextTick } from 'vue'
+import { defineComponent, ref, watch, nextTick, onBeforeUnmount } from 'vue'
 import BScroll, { BScrollInstance, Options } from '@better-scroll/core'
 import MouseWheel from '@better-scroll/mouse-wheel'
 import Slide from '@better-scroll/slide'
@@ -21,7 +21,7 @@ function _init(elm: HTMLElement | string, option: Options): BScrollInstance {
 }
 
 export default defineComponent({
-  name: 'Bscroll',
+  name: 'Scroll',
   props: {
     /**
      * 1 滚动的时候会派发scroll事件，会截流。
@@ -65,7 +65,7 @@ export default defineComponent({
      */
     data: {
       type: Array,
-      default: null
+      default: () => []
     },
     /**
      * 当数据更新后，刷新scroll的延时。
@@ -123,12 +123,12 @@ export default defineComponent({
       // 代理better-scroll的refresh方法
       scroll.value && scroll.value.refresh()
     }
-    function scrollTo() {
+    const scrollTo = () => {
       // 代理better-scroll的scrollTo方法
       scroll.value &&
         scroll.value.scrollTo.apply(scroll.value, arguments as any)
     }
-    function scrollToElement() {
+    const scrollToElement = () => {
       // 代理better-scroll的scrollToElement方法
       scroll.value &&
         scroll.value.scrollToElement.apply(scroll.value, arguments as any)
@@ -137,6 +137,9 @@ export default defineComponent({
       setTimeout(() => {
         refresh()
       }, props.refreshDelay)
+    })
+    onBeforeUnmount(() => {
+      scroll.value && scroll.value.destroy()
     })
     return { wrapper, disable, enable, refresh, scrollTo, scrollToElement }
   }
