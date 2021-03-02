@@ -4,5 +4,7 @@
   "bracketSpacing": true,
   "trailingComma": "none",
   "tabWidth": 2,
+  "endOfLine": "auto",
   "prettier.eslintIntegration": false
 }
+

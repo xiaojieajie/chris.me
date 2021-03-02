@@ -1,25 +1,17 @@
-const { resolve } = require('path')
+import { defineConfig } from 'vite'
+import { resolve } from 'path'
+import vue from '@vitejs/plugin-vue'
 
 const pathResolve = (src: string) => resolve(__dirname, src)
+console.log(pathResolve('src/'))
 
-const pathName = '/blog'
-
-module.exports = {
-  port: 1111,
-  alias: {
-    '/@/': pathResolve('src'),
-    '/@c/': pathResolve('src/components'),
-  },
-  base: './',
-  // outDir: pathResolve(`../build${pathName}`),
-  optimizeDeps: {
-    // include: ['pixi.js'],
-  },
-  proxy: {
-    '/api': {
-      target: 'http://localhost:1324/api',
-      changeOrigin: true,
-      rewrite: (path: string) => path.replace(/^\/api/, '')
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': pathResolve('src/'),
+      '@c': pathResolve('src/components/')
     }
   }
-}
+})
