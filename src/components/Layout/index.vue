@@ -1,9 +1,18 @@
 <template>
   <div id="layout">
-    <Scroll :slide="slide" :nested="nested" class="wrapper">
-      <div class="layout">
-        <Mine />
-        <div class="content">
+    <Scroll
+      class="wrapper"
+      scroll-x
+      :scroll-y="false"
+      :mouse-wheel="false"
+      :slide="slide"
+      :nested="nested"
+    >
+      <div class="content">
+        <div class="view">
+          <Mine />
+        </div>
+        <div class="view">
           <router-view />
         </div>
       </div>
@@ -25,7 +34,7 @@ export default defineComponent({
     const slide = reactive<Partial<SlideConfig>>({
       loop: false,
       autoplay: false,
-      speed: 300
+      speed: 100
     })
     const nested = reactive<Partial<NestedScrollConfig>>({
       groupId: 'page'
@@ -37,18 +46,20 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 #layout {
+  position: relative;
   height: 100%;
-}
-.wrapper {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-.layout {
-  .content {
-    width: 100%;
+  .wrapper {
     height: 100%;
     overflow: hidden;
+    .content {
+      height: 100%;
+      display: flex;
+      .view {
+        height: 100%;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+      }
+    }
   }
 }
 </style>

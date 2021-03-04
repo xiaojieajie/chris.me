@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, nextTick, onBeforeUnmount } from 'vue'
+import { defineComponent, ref, watch, onBeforeUnmount, onMounted } from 'vue'
 import BScroll, { BScrollInstance, Options } from '@better-scroll/core'
-import MouseWheel from '@better-scroll/mouse-wheel'
 import Slide from '@better-scroll/slide'
+import MouseWheel from '@better-scroll/mouse-wheel'
 import NestedScroll from '@better-scroll/nested-scroll'
 
 BScroll.use(Slide)
@@ -78,6 +78,13 @@ export default defineComponent({
       type: Object,
       default: null
     },
+    /**
+     * 是否启用鼠标滚动
+     */
+    mouseWheel: {
+      type: Boolean,
+      default: true
+    },
     nested: {
       type: Object,
       default: null
@@ -93,15 +100,15 @@ export default defineComponent({
         click: props.click,
         scrollX: props.scrollX,
         scrollY: props.scrollY,
-        mouseWheel: true,
         momentum: false,
         bounce: false,
         stopPropagation: true
       },
+      (props.mouseWheel && { mouseWheel: true }) || {},
       (props.slide && { slide: props.slide }) || {},
       (props.nested && { nestedScroll: props.nested }) || {}
     ) as Options
-    nextTick(() => {
+    onMounted(() => {
       if (wrapper.value) {
         scroll.value = _init(wrapper.value, options)
         if (props.listenScroll) {
