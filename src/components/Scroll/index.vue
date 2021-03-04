@@ -9,11 +9,11 @@ import { defineComponent, ref, watch, onBeforeUnmount, onMounted } from 'vue'
 import BScroll, { BScrollInstance, Options } from '@better-scroll/core'
 import Slide from '@better-scroll/slide'
 import MouseWheel from '@better-scroll/mouse-wheel'
-import NestedScroll from '@better-scroll/nested-scroll'
+// import NestedScroll from '@better-scroll/nested-scroll'
 
 BScroll.use(Slide)
 BScroll.use(MouseWheel)
-BScroll.use(NestedScroll)
+// BScroll.use(NestedScroll)
 
 function _init(elm: HTMLElement | string, option: Options): BScrollInstance {
   const scroll = new BScroll(elm, { ...option })
@@ -84,14 +84,16 @@ export default defineComponent({
     mouseWheel: {
       type: Boolean,
       default: true
-    },
-    nested: {
-      type: Object,
-      default: null
     }
+    // nested: {
+    //   type: Object,
+    //   default: null
+    // }
   },
   emits: ['scroll'],
   setup(props, ctx) {
+    console.log(props)
+
     const wrapper = ref<null | HTMLElement>(null)
     const scroll = ref<null | BScrollInstance>(null)
     const options = Object.assign(
@@ -100,14 +102,13 @@ export default defineComponent({
         click: props.click,
         scrollX: props.scrollX,
         scrollY: props.scrollY,
-        momentum: false,
-        bounce: false,
         stopPropagation: true
       },
       (props.mouseWheel && { mouseWheel: true }) || {},
-      (props.slide && { slide: props.slide }) || {},
-      (props.nested && { nestedScroll: props.nested }) || {}
+      (props.slide && { slide: props.slide }) || {}
+      // (props.nested && { nestedScroll: props.nested }) || {}
     ) as Options
+    console.log(options)
     onMounted(() => {
       if (wrapper.value) {
         scroll.value = _init(wrapper.value, options)

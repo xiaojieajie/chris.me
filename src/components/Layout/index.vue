@@ -1,19 +1,22 @@
 <template>
   <div id="layout">
     <Scroll
-      class="wrapper"
+      class="outer-wrapper"
+      :mouse-wheel="false"
       scroll-x
       :scroll-y="false"
-      :mouse-wheel="false"
       :slide="slide"
-      :nested="nested"
     >
-      <div class="content">
+      <div class="outer-content">
         <div class="view">
           <Mine />
         </div>
         <div class="view">
-          <router-view />
+          <div ref="innerRef" class="inner-wrapper">
+            <div class="inner-content">
+              <router-view />
+            </div>
+          </div>
         </div>
       </div>
     </Scroll>
@@ -21,11 +24,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, ref, onMounted, onBeforeUnmount } from 'vue'
 import Scroll from '@c/Scroll/index.vue'
 import Mine from '@/views/Mine.vue'
+import BScroll, { BScrollInstance } from '@better-scroll/core'
 import { SlideConfig } from '@better-scroll/slide'
-import { NestedScrollConfig } from '@better-scroll/nested-scroll'
+import NestedScroll from '@better-scroll/nested-scroll'
+import MouseWheel from '@better-scroll/mouse-wheel'
+
+BScroll.use(NestedScroll)
+BScroll.use(MouseWheel)
 
 export default defineComponent({
   name: 'Layout',
@@ -36,10 +44,22 @@ export default defineComponent({
       autoplay: false,
       speed: 100
     })
-    const nested = reactive<Partial<NestedScrollConfig>>({
-      groupId: 'page'
+    const innerRef = ref<null | HTMLElement>(null)
+    const scroll = ref<null | BScrollInstance>(null)
+    onMounted(() => {
+      if (innerRef.value) {
+        scroll.value = new BScroll(innerRef.value, {
+          mouseWheel: true,
+          nestedScroll: {
+            groupId: 'page'
+          }
+        })
+      }
     })
-    return { slide, nested }
+    onBeforeUnmount(() => {
+      scroll.value && scroll.value.destory()
+    })
+    return { slide, innerRef }
   }
 })
 </script>
@@ -48,17 +68,20 @@ export default defineComponent({
 #layout {
   position: relative;
   height: 100%;
-  .wrapper {
+  .outer-wrapper,
+  .inner-wrapper {
     height: 100%;
     overflow: hidden;
-    .content {
+  }
+}
+.outer-wrapper {
+  > .outer-content {
+    height: 100%;
+    display: flex;
+    .view {
       height: 100%;
-      display: flex;
-      .view {
-        height: 100%;
-        transform: translate3d(0, 0, 0);
-        backface-visibility: hidden;
-      }
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
     }
   }
 }
