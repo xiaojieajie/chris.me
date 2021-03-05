@@ -1,12 +1,16 @@
 <template>
-  <div>mine</div>
+  <div>
+    <h1>mine</h1>
+    <Time />
+  </div>
 </template>
 
 <script lang="ts">
 import { ref, reactive } from 'vue'
+import Time from '@c/Time/index.vue'
 export default {
   name: 'Mine',
-  components: {},
+  components: { Time },
   setup() {
     return {}
   }

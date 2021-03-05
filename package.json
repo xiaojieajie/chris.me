@@ -12,7 +12,6 @@
     "@better-scroll/nested-scroll": "^2.2.0",
     "@better-scroll/slide": "^2.2.0",
     "element-plus": "^1.0.2-beta.32",
-    "stylus": "^0.54.8",
     "vue": "^3.0.5",
     "vue-router": "^4.0.4",
     "vuex": "^4.0.0"
