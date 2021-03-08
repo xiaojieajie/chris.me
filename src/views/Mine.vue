@@ -1,7 +1,7 @@
 <template>
   <div id="mine">
     <div class="wrapper flex-center">
-      <GlassCard>
+      <GlassCard :width="400">
         <div class="content">
           <Time />
         </div>
@@ -65,7 +65,8 @@ export default {
   .wrapper {
     height: 100%;
     padding: 3.2rem;
-    background: url('http://blog.chrisying.cn/splatter.png');
+    // background-image: url('http://blog.chrisying.cn/splatter.png');
+    background-color: aquamarine;
     background-size: 50%;
     background-position: center;
     .icon {

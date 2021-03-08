@@ -1,66 +1,85 @@
 <template>
-  <div class="glassCard">
+  <div class="glassCard" :style="style">
     <div class="glassRadius"></div>
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
+import { addUnit } from '@/utils'
 export default defineComponent({
   name: 'GlassCard',
-  props: {},
-  setup() {
-    return {}
+  props: {
+    width: {
+      type: [String, Number],
+      default: '100%'
+    },
+    height: {
+      type: [String, Number],
+      default: 'auto'
+    },
+    radius: {
+      type: String,
+      default: '2rem'
+    },
+    blur: {
+      type: String,
+      default: '3px'
+    }
+  },
+  setup(props) {
+    const style = computed(() => ({
+      width: addUnit(props.width),
+      height: addUnit(props.height),
+      borderRadius: props.radius,
+      backdropFilter: `blur(${props.blur})`,
+      '--radius': props.radius
+    }))
+    return { style }
   }
 })
 </script>
 
 <style lang="scss" scoped>
 .glassCard {
-  width: 400px;
-  // height: 550px;
-  border-radius: 20px;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.6),
     rgba(255, 255, 255, 0.1)
   );
-  backdrop-filter: blur(3px);
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
   &::before {
     content: '';
     display: block;
-    width: calc(100% - 40px);
+    width: calc(100% - 2 * var(--radius));
     height: 1px;
     position: absolute;
     top: 0px;
-    left: 20px;
+    left: var(--radius);
     background: linear-gradient(to right, #fff, transparent);
     z-index: 2;
-    border-radius: 20px;
   }
   &::after {
     content: '';
     display: block;
     width: 1px;
-    height: calc(100% - 40px);
+    height: calc(100% - 2 * var(--radius));
     position: absolute;
-    top: 20px;
+    top: var(--radius);
     left: 0px;
     background: linear-gradient(to bottom, #fff, transparent);
     z-index: 2;
-    border-radius: 20px;
   }
-  .glassRaduis {
+  .glassRadius {
     position: absolute;
     top: 0;
     left: 0;
-    width: 40px;
-    height: 40px;
+    width: calc(2 * var(--radius));
+    height: calc(2 * var(--radius));
     border-radius: 50%;
     border: 1px solid #fff;
-    clip: rect(0, 20px, 20px, 0);
+    clip: rect(0, var(--radius), var(--radius), 0);
     z-index: -1;
   }
 }
