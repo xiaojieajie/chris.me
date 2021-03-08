@@ -1,6 +1,6 @@
 <template>
   <div id="time">
-    <canvas id="clock" ref="clock" width="400" height="400"></canvas>
+    <canvas id="clock" ref="clock" width="200" height="200"></canvas>
   </div>
 </template>
 
@@ -9,17 +9,18 @@ import { ref, onMounted } from 'vue'
 
 function draw(ctx: CanvasRenderingContext2D) {
   const circle = {
-    x: 200,
-    y: 200,
-    radius: 180,
-    color: 'rgba(255, 255, 255, .5)', // 刻度颜色
+    x: 100,
+    y: 100,
+    radius: 70,
+    color: 'red', // 刻度颜色
+    // color: 'rgba(255, 255, 255)', // 刻度颜色
     outer: {
       lineWidth: 1,
-      border: 'rgba(255, 255, 255, .5)'
+      border: 'red'
     },
     inner: {
       lineWidth: 1,
-      border: 'rgba(255, 255, 255, .5)'
+      border: 'red'
     }
   }
   //   ctx.beginPath()
@@ -37,7 +38,7 @@ function draw(ctx: CanvasRenderingContext2D) {
   function drawOuterCircle() {
     ctx.beginPath()
     ctx.lineWidth = circle.outer.lineWidth
-    ctx.arc(circle.x, circle.y, circle.radius + 10, 0, Math.PI * 2)
+    ctx.arc(circle.x, circle.y, circle.radius + 8, 0, Math.PI * 2)
     ctx.strokeStyle = circle.outer.border
     ctx.stroke()
     ctx.save()
@@ -54,7 +55,7 @@ function draw(ctx: CanvasRenderingContext2D) {
   function drawTicks() {
     ctx.save()
     for (let i = 0; i < 12; i++) {
-      drawTick((i * Math.PI) / 6, 20, 10, i % 3 === 0 ? String(i + 3) : '')
+      drawTick((i * Math.PI) / 6, 15, 5, i % 3 === 0 ? String(i + 3) : '')
     }
     ctx.restore()
   }
