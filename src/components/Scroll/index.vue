@@ -92,8 +92,6 @@ export default defineComponent({
   },
   emits: ['scroll'],
   setup(props, ctx) {
-    console.log(props)
-
     const wrapper = ref<null | HTMLElement>(null)
     const scroll = ref<null | BScrollInstance>(null)
     const options = Object.assign(
@@ -112,7 +110,6 @@ export default defineComponent({
       (props.slide && { slide: props.slide }) || {}
       // (props.nested && { nestedScroll: props.nested }) || {}
     ) as Options
-    console.log(options)
     onMounted(() => {
       if (wrapper.value) {
         scroll.value = _init(wrapper.value, options)

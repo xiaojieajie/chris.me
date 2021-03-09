@@ -9,37 +9,31 @@
       </GlassCard>
       <div class="icon" @mousemove="parallax">
         <div class="box">
-          <img ref="ll0" src="http://blog.chrisying.cn/layer-0.png" alt="" />
           <img
-            ref="ll1"
-            class="pa"
-            src="http://blog.chrisying.cn/layer-1.png"
-            alt=""
+            v-for="(src, i) in realImgs"
+            :key="src"
+            :ref="i === 0 ? 'img_0_ref' : ''"
+            :src="src"
+            :class="i !== 0 ? 'pa' : ''"
+            :style="imgStyles[i]"
+            alt="loading fail"
           />
-          <img
-            ref="ll2"
-            class="pa"
-            src="http://blog.chrisying.cn/layer-2.png"
-            alt=""
-          />
-          <img
-            ref="ll3"
-            class="pa"
-            src="http://blog.chrisying.cn/layer-3.png"
-            alt=""
-          />
-          <img
-            ref="ll4"
-            class="pa"
-            src="http://blog.chrisying.cn/layer-4.png"
-            alt=""
-          />
-          <img
-            ref="ll5"
-            class="pa"
-            src="http://blog.chrisying.cn/layer-5.png"
-            alt=""
-          />
+          <!-- <template v-for="(src, i) in realImgs" :key="src">
+            <img
+              v-if="i === 0"
+              ref="img_0_ref"
+              :src="src"
+              :style="imgStyles[i]"
+              alt="loading fail"
+            />
+            <img
+              v-else
+              :src="src"
+              :style="imgStyles[i]"
+              class="pa"
+              alt="loading fail"
+            />
+          </template> -->
           <!-- <img src="http://blog.chrisying.cn/hero.png" alt=""  /> -->
         </div>
       </div>
@@ -52,106 +46,66 @@ import { ref, reactive, nextTick } from 'vue'
 import Time from '@c/Time/index.vue'
 import GlassCard from '@c/GlassCard/index.vue'
 
-function header_parallax() {
-  const ll0 = ref<HTMLElement | null>(null)
-  const ll1 = ref<HTMLElement | null>(null)
-  const ll2 = ref<HTMLElement | null>(null)
-  const ll3 = ref<HTMLElement | null>(null)
-  const ll4 = ref<HTMLElement | null>(null)
-  const ll5 = ref<HTMLElement | null>(null)
+function handleParallax() {
+  const img_0_ref = ref<HTMLElement | null>(null)
+  const imgStyles = reactive([
+    {
+      transform: ''
+    },
+    {
+      transform: ''
+    },
+    {
+      transform: ''
+    },
+    {
+      transform: ''
+    },
+    {
+      transform: ''
+    },
+    {
+      transform: ''
+    }
+  ])
   const bound = ref<DOMRect>()
 
   nextTick(() => {
-    if (ll0.value) {
-      bound.value = ll0.value.getBoundingClientRect()
+    if (img_0_ref.value) {
+      bound.value = img_0_ref.value.getBoundingClientRect()
     }
   })
 
   function transform(event: MouseEvent, strength: number) {
-    if (bound.value) {
-      let tX = ((window.innerWidth - event.pageX) * strength) / 2000
-      let tY = ((window.innerHeight - event.pageY) * strength) / 2000
-      let sX =
-        (0.5 - (event.pageY - bound.value.left) / bound.value.width) * 1.1
-      let sY =
-        -(0.5 - (event.pageX - bound.value.top) / bound.value.width) * 1.1
-      return (
-        'translate(' +
-        tX +
-        'px, ' +
-        tY +
-        'px) skew(' +
-        sX +
-        'deg, ' +
-        sY +
-        'deg)'
-      )
-    }
-    return ''
+    let tX = ((window.innerWidth - event.pageX) * strength) / 2000
+    let tY = ((window.innerHeight - event.pageY) * strength) / 2000
+    let sX =
+      (0.5 -
+        (event.pageY - (bound.value as DOMRect).left) /
+          (bound.value as DOMRect).width) *
+      1.1
+    let sY =
+      -(
+        0.5 -
+        (event.pageX - (bound.value as DOMRect).top) /
+          (bound.value as DOMRect).width
+      ) * 1.1
+    return (
+      'translate(' + tX + 'px, ' + tY + 'px) skew(' + sX + 'deg, ' + sY + 'deg)'
+    )
   }
   function parallax(event: MouseEvent) {
-    if (
-      ll0.value &&
-      ll1.value &&
-      ll2.value &&
-      ll3.value &&
-      ll4.value &&
-      ll5.value
-    ) {
-      ll0.value.style.transform = transform(event, 5)
-      ll1.value.style.transform = transform(event, -10)
-      ll2.value.style.transform = transform(event, 25)
-      ll3.value.style.transform = transform(event, 20)
-      ll4.value.style.transform = transform(event, -30)
-      ll5.value.style.transform = transform(event, 15)
-    }
+    imgStyles[0].transform = transform(event, 5)
+    imgStyles[1].transform = transform(event, -10)
+    imgStyles[2].transform = transform(event, 25)
+    imgStyles[3].transform = transform(event, 20)
+    imgStyles[4].transform = transform(event, -30)
+    imgStyles[5].transform = transform(event, 15)
   }
   return {
-    ll0,
-    ll1,
-    ll2,
-    ll3,
-    ll4,
-    ll5,
+    img_0_ref,
+    imgStyles,
     parallax
-    // matchMedia: null,
-    // bound: null,
-    // init() {
-    //   this.matchMedia = window.matchMedia('(prefers-reduced-motion: reduce)')
-    //   this.bound = this.$refs.ll0.getBoundingClientRect()
-    // },
-    // transform(event, strength) {
-    //   let tX = ((window.innerWidth - event.pageX) * strength) / 2000
-    //   let tY = ((window.innerHeight - event.pageY) * strength) / 2000
-    //   let sX = (0.5 - (event.pageY - this.bound.left) / this.bound.width) * 1.1
-    //   let sY = -(0.5 - (event.pageX - this.bound.top) / this.bound.width) * 1.1
-    //   return (
-    //     'translate(' +
-    //     tX +
-    //     'px, ' +
-    //     tY +
-    //     'px) skew(' +
-    //     sX +
-    //     'deg, ' +
-    //     sY +
-    //     'deg)'
-    //   )
-    // },
-    // parallax(event) {
-    //   if (
-    //     !this.matchMedia ||
-    //     this.matchMedia.matches ||
-    //     window.innerWidth < 1024
-    //   )
-    //     return
-    //   let el = document.documentElement.classList.contains('dark') ? 'ld' : 'll'
-    //   this.$refs[el + 0].style.transform = this.transform(event, 5)
-    //   this.$refs[el + 1].style.transform = this.transform(event, -10)
-    //   this.$refs[el + 2].style.transform = this.transform(event, 25)
-    //   this.$refs[el + 3].style.transform = this.transform(event, 20)
-    //   this.$refs[el + 4].style.transform = this.transform(event, -30)
-    //   this.$refs[el + 5].style.transform = this.transform(event, 15)
-    // }
   }
 }
 
@@ -159,7 +113,25 @@ export default {
   name: 'Mine',
   components: { Time, GlassCard },
   setup() {
-    return { ...header_parallax() }
+    const ligthImgs = reactive([
+      'http://blog.chrisying.cn/layer-0.png',
+      'http://blog.chrisying.cn/layer-1.png',
+      'http://blog.chrisying.cn/layer-2.png',
+      'http://blog.chrisying.cn/layer-3.png',
+      'http://blog.chrisying.cn/layer-4.png',
+      'http://blog.chrisying.cn/layer-5.png'
+    ])
+    const drakImgs = reactive([
+      'http://blog.chrisying.cn/layer-0-dark.png',
+      'http://blog.chrisying.cn/layer-1-dark.png',
+      'http://blog.chrisying.cn/layer-2-dark.png',
+      'http://blog.chrisying.cn/layer-3-dark.png',
+      'http://blog.chrisying.cn/layer-4-dark.png',
+      'http://blog.chrisying.cn/layer-5-dark.png'
+    ])
+    const theme = ref(localStorage.getItem('theme') as string)
+    const realImgs = theme.value === 'dark' ? drakImgs : ligthImgs
+    return { ...handleParallax(), theme, realImgs }
   }
 }
 </script>
@@ -179,8 +151,7 @@ export default {
     .icon {
       user-select: none;
       max-width: 52%;
-      padding: 0 4.8rem;
-      flex: 1;
+      margin-left: 7rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -203,7 +174,6 @@ export default {
 .content {
   padding: 50px;
 }
-
 .flex-center {
   display: flex;
   justify-content: center;
