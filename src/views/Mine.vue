@@ -3,14 +3,43 @@
     <div class="wrapper flex-center">
       <GlassCard class="info">
         <div class="content">
-          <h1 class="title fontzy gradient-text">BLOG by chris</h1>
-          <!-- <h1 class="title fontxh">BLOG</h1> -->
+          <h1 class="title fontzy gradient-text">
+            BLOG <span class="by">by</span> CHRIS
+          </h1>
+          <div class="stage">
+            <img
+              class="avatar"
+              src="http://blog.chrisying.cn/avatar.jpg"
+              alt=""
+            />
+            <div id="time">
+              <Time />
+            </div>
+          </div>
 
-          <img
-            class="avatar"
-            src="http://blog.chrisying.cn/avatar.jpg"
-            alt=""
-          />
+          <button class="flex-center theme dark">
+            <svg
+              class="moon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 15 15"
+            >
+              <path
+                d="M7.707.003a.5.5 0 00-.375.846 6 6 0 01-5.569 10.024.5.5 0 00-.519.765A7.5 7.5 0 107.707.003z"
+              ></path>
+            </svg>
+          </button>
+          <button class="flex-center theme light">
+            <svg
+              class="sun"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 15 15"
+            >
+              <path
+                d="M8 2V0H7v2h1zm-4.793.498L1.5.792.793 1.5 2.5 3.206l.707-.708zm9.293.708L14.207 1.5 13.5.792l-1.707 1.706.707.708zm-5 .791a3.499 3.499 0 100 6.996 3.499 3.499 0 100-6.996zM2 6.995H0v1h2v-1zm13 0h-2v1h2v-1zM1.5 14.199l1.707-1.707-.707-.707-1.707 1.706.707.708zm12.707-.708L12.5 11.785l-.707.707L13.5 14.2l.707-.708zM8 14.99v-1.998H7v1.999h1z"
+              ></path>
+            </svg>
+          </button>
+
           <!-- <Time /> -->
           <!--<img class="test" src="@/assets/logo.png" alt="" /> -->
         </div>
@@ -167,13 +196,64 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        .avatar {
-          width: 12rem;
+        .stage {
+          width: 15rem;
+          height: 15rem;
+          position: relative;
+          transform-style: preserve-3d;
+          transition: all 1s;
+
+          &:hover {
+            transform: rotateY(180deg);
+          }
+          .avatar,
+          #time {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+          .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            z-index: 1;
+            transition: all 1s;
+            backface-visibility: hidden;
+          }
+          #time {
+            backface-visibility: hidden;
+            // transform: rotateY(180deg);
+            // transform-origin: 50% 50%;
+          }
+        }
+        .theme {
+          padding: 0.8rem;
+          background-color: #eaeaea;
           border-radius: 50%;
+          border: none;
+          outline: none;
+          transition: all ease-in-out 0.35s;
+          &:hover {
+            cursor: pointer;
+            background-color: #e2e8f0;
+          }
+          .moon,
+          .sun {
+            color: rgba($color: #000000, $alpha: 0.75);
+            width: 1.6rem;
+            height: 1.6rem;
+          }
         }
         .title {
           font-size: 8rem;
           color: #fff;
+          display: flex;
+          align-items: center;
+          .by {
+            font-size: 2rem;
+            margin: 0 2rem;
+          }
+          // vertical-align: middle;
         }
       }
     }

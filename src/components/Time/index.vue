@@ -1,6 +1,6 @@
 <template>
   <div id="time">
-    <canvas id="clock" ref="clock" width="200" height="200"></canvas>
+    <canvas id="clock" ref="clock" width="150" height="150"></canvas>
   </div>
 </template>
 
@@ -9,18 +9,19 @@ import { ref, onMounted } from 'vue'
 
 function draw(ctx: CanvasRenderingContext2D) {
   const circle = {
-    x: 100,
-    y: 100,
-    radius: 70,
-    color: '#fff', // 刻度颜色
+    x: 75,
+    y: 75,
+    radius: 64, //  内圈半径
+    distance: 9, // 圆环宽度（内圈到外圈的距离）
+    color: 'red', // 刻度颜色
     // color: 'rgba(255, 255, 255)', // 刻度颜色
     outer: {
       lineWidth: 1,
-      border: '#fff'
+      border: 'red'
     },
     inner: {
       lineWidth: 1,
-      border: '#fff'
+      border: 'red'
     }
   }
   //   ctx.beginPath()
@@ -31,14 +32,18 @@ function draw(ctx: CanvasRenderingContext2D) {
   //   ctx.moveTo(0, 200)
   //   ctx.lineTo(400, 200)
   //   ctx.stroke()
+
+  // ctx.translate(0, 0)
+
   drawOuterCircle()
   drawInnerCircle()
   drawTicks()
+  ctx.rotate(Math.PI)
 
   function drawOuterCircle() {
     ctx.beginPath()
     ctx.lineWidth = circle.outer.lineWidth
-    ctx.arc(circle.x, circle.y, circle.radius + 8, 0, Math.PI * 2)
+    ctx.arc(circle.x, circle.y, circle.radius + circle.distance, 0, Math.PI * 2)
     ctx.strokeStyle = circle.outer.border
     ctx.stroke()
     ctx.save()
@@ -51,7 +56,6 @@ function draw(ctx: CanvasRenderingContext2D) {
     ctx.stroke()
     ctx.save()
   }
-
   function drawTicks() {
     ctx.save()
     for (let i = 0; i < 12; i++) {

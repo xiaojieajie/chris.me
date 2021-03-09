@@ -9,6 +9,10 @@ html,
 body {
   height: 100%;
 }
+body{
+  perspective: 1000px;
+
+}
 
 html {
   font-size: 10px;
@@ -27,6 +31,20 @@ html {
 @font-face {
   font-family: 'xhFont';
   src: url('http://blog.chrisying.cn/font2.woff2');
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fontzy {
