@@ -11,14 +11,14 @@ import { addUnit } from '@/utils'
 export default defineComponent({
   name: 'GlassCard',
   props: {
-    width: {
-      type: [String, Number],
-      default: '100%'
-    },
-    height: {
-      type: [String, Number],
-      default: 'auto'
-    },
+    // width: {
+    //   type: [String, Number],
+    //   default: '100%'
+    // },
+    // height: {
+    //   type: [String, Number],
+    //   default: 'auto'
+    // },
     radius: {
       type: String,
       default: '2rem'
@@ -30,8 +30,8 @@ export default defineComponent({
   },
   setup(props) {
     const style = computed(() => ({
-      width: addUnit(props.width),
-      height: addUnit(props.height),
+      // width: addUnit(props.width),
+      // height: addUnit(props.height),
       borderRadius: props.radius,
       backdropFilter: `blur(${props.blur})`,
       '--radius': props.radius

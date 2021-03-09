@@ -18,3 +18,132 @@ html {
 #app {
   height: 100%;
 }
+
+@font-face {
+  font-family: 'zyFont';
+  src: url('http://blog.chrisying.cn/font.woff2');
+}
+
+@font-face {
+  font-family: 'xhFont';
+  src: url('http://blog.chrisying.cn/font2.woff2');
+}
+
+.fontzy {
+  font-family: 'zyFont', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.fontxh {
+  font-family: 'xhFont', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.gradient-text {
+  background: linear-gradient(264.51deg,
+      #ffe580 4.38%,
+      #ff7571 11.51%,
+      #ff7270 25.06%,
+      #ea5dad 36.04%,
+      #c2a0fd 47.63%,
+      #9867f0 59.03%,
+      #3bf0e4 69.96%,
+      #33ce43 83.74%,
+      #b2f4b6 95.62%);
+  background-position: 58% 50%;
+  background-size: 500%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-animation: gradient-shift 30s ease infinite;
+  animation: gradient-shift 30s ease infinite;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-button {
+  padding: 1.2rem 4rem;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: none;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  overflow: hidden;
+  background: transparent;
+  color: var(--white);
+  transition: background 0.4s ease-in-out, border-color 0.4s ease-in-out,
+    color 0.4s ease-in-out;
+
+  &:focus {
+    color: #fff;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    opacity: 0;
+    position: absolute;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    top: 2px;
+    left: 2px;
+    z-index: -1;
+    transform: translate3d(0, 0, 0);
+    transition: background 0.4s ease-in-out;
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    z-index: -3;
+    background: transparent;
+    background: linear-gradient(264.51deg,
+        #ffe580 4.38%,
+        #ff7571 11.51%,
+        #ff7270 25.06%,
+        #ea5dad 36.04%,
+        #c2a0fd 47.63%,
+        #9867f0 59.03%,
+        #42ba96 69.96%,
+        #20c997 83.74%,
+        #b2f4b6 95.62%);
+    background-position: 58% 50%;
+    background-size: 500%;
+    animation: gradient-shift 30s ease infinite;
+  }
+
+  &:hover {
+    color: #fff;
+
+    &::before {
+      background: transparent;
+    }
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 58% 50%;
+  }
+
+  25% {
+    background-position: 100% 0%;
+  }
+
+  75% {
+    background-position: 10% 50%;
+  }
+
+  100% {
+    background-position: 58% 50%;
+  }
+}

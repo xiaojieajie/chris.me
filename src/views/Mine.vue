@@ -1,10 +1,18 @@
 <template>
   <div id="mine">
     <div class="wrapper flex-center">
-      <GlassCard class="info" :width="400">
+      <GlassCard class="info">
         <div class="content">
-          <Time />
-          <img class="test" src="@/assets/logo.png" alt="" />
+          <h1 class="title fontzy gradient-text">BLOG by chris</h1>
+          <!-- <h1 class="title fontxh">BLOG</h1> -->
+
+          <img
+            class="avatar"
+            src="http://blog.chrisying.cn/avatar.jpg"
+            alt=""
+          />
+          <!-- <Time /> -->
+          <!--<img class="test" src="@/assets/logo.png" alt="" /> -->
         </div>
       </GlassCard>
       <div class="icon" @mousemove="parallax">
@@ -142,11 +150,32 @@ export default {
   .wrapper {
     height: 100%;
     padding: 3.2rem;
-    background-image: url('http://blog.chrisying.cn/splatter.png');
-    background-size: 50%;
-    background-position: center;
+    // background-image: url('http://blog.chrisying.cn/splatter-dark.png');
+    background: linear-gradient(
+        234.48deg,
+        rgba(20, 255, 86, 0.32) 18.43%,
+        rgba(255, 255, 255, 0) 59.49%
+      ),
+      linear-gradient(180deg, #feefff 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(251.16deg, #cddefd 14.97%, rgba(255, 255, 255, 0) 88.15%),
+      #deffe5;
+    // background-size: 50%;
+    // background-position: center;
     .info {
-      width: 300px !important;
+      .content {
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .avatar {
+          width: 12rem;
+          border-radius: 50%;
+        }
+        .title {
+          font-size: 8rem;
+          color: #fff;
+        }
+      }
     }
     .icon {
       user-select: none;
@@ -170,9 +199,6 @@ export default {
       }
     }
   }
-}
-.content {
-  padding: 50px;
 }
 .flex-center {
   display: flex;

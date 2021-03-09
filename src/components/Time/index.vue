@@ -12,15 +12,15 @@ function draw(ctx: CanvasRenderingContext2D) {
     x: 100,
     y: 100,
     radius: 70,
-    color: 'red', // 刻度颜色
+    color: '#fff', // 刻度颜色
     // color: 'rgba(255, 255, 255)', // 刻度颜色
     outer: {
       lineWidth: 1,
-      border: 'red'
+      border: '#fff'
     },
     inner: {
       lineWidth: 1,
-      border: 'red'
+      border: '#fff'
     }
   }
   //   ctx.beginPath()
@@ -101,5 +101,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 #time {
+  font-size: 0;
 }
 </style>
