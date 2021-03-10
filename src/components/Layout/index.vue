@@ -26,7 +26,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, onMounted, onBeforeUnmount } from 'vue'
 import Scroll from '@c/Scroll/index.vue'
-import Mine from '@/views/Mine.vue'
+import Mine from '@/views/Mine/index.vue'
 import BScroll, { BScrollInstance } from '@better-scroll/core'
 import { SlideConfig } from '@better-scroll/slide'
 import NestedScroll from '@better-scroll/nested-scroll'

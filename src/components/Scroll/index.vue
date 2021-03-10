@@ -100,11 +100,11 @@ export default defineComponent({
         click: props.click,
         scrollX: props.scrollX,
         scrollY: props.scrollY,
-        stopPropagation: true,
-        preventDefault: true,
-        preventDefaultException: {
-          className: /(^|\s)test(\s|$)/
-        }
+        stopPropagation: true
+        // preventDefault: false
+        // preventDefaultException: {
+        //   className: /(^|\s)test(\s|$)/
+        // }
       } as Options,
       (props.mouseWheel && { mouseWheel: true }) || {},
       (props.slide && { slide: props.slide }) || {}
