@@ -7,12 +7,8 @@
             BLOG <span class="by">by</span> CHRIS
           </h1>
           <div class="stage">
-            <!-- <img
-              class="avatar"
-              src="http://blog.chrisying.cn/avatar.jpg"
-              alt=""
-            /> -->
             <el-avatar
+              class="avatar"
               :size="80"
               src="http://blog.chrisying.cn/avatar.jpg"
             ></el-avatar>
@@ -21,9 +17,9 @@
             </div> -->
           </div>
           <div class="btn-group flex">
-            <button class="flex-center theme dark">
+            <button class="flex-center theme">
               <svg
-                class="moon"
+                class="dark"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 15 15"
               >
@@ -32,9 +28,9 @@
                 ></path>
               </svg>
             </button>
-            <button class="flex-center theme light">
+            <button class="flex-center theme">
               <svg
-                class="sun"
+                class="light"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 15 15"
               >
@@ -43,6 +39,9 @@
                 ></path>
               </svg>
             </button>
+          </div>
+          <div>
+            <button>Read</button>
           </div>
 
           <!-- <Time /> -->
@@ -202,34 +201,13 @@ export default {
         flex-direction: column;
         align-items: center;
         .stage {
-          // width: 15rem;
-          // height: 15rem;
-          // position: relative;
-          // transform-style: preserve-3d;
-          // perspective: 1000px;
-          // transition: all 1s;
-          // &:hover {
-          //   transform: rotateY(180deg);
-          // }
-          // .avatar,
-          // #time {
-          //   position: absolute;
-          //   top: 0;
-          //   left: 0;
-          // }
-          // .avatar {
-          //   width: 100%;
-          //   height: 100%;
-          //   border-radius: 50%;
-          //   z-index: 1;
-          //   transition: all 1s;
-          //   backface-visibility: hidden;
-          // }
-          // #time {
-          //   backface-visibility: hidden;
-          //   // transform: rotateY(180deg);
-          //   // transform-origin: 50% 50%;
-          // }
+          font-size: 0;
+          .avatar {
+            &:hover {
+              cursor: pointer;
+              animation: run linear 1s;
+            }
+          }
         }
         .theme {
           padding: 0.8rem;
@@ -242,8 +220,8 @@ export default {
             cursor: pointer;
             background-color: #e2e8f0;
           }
-          .moon,
-          .sun {
+          .dark,
+          .light {
             color: rgba($color: #000000, $alpha: 0.75);
             width: 1.6rem;
             height: 1.6rem;
