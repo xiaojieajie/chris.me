@@ -16,7 +16,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2021
   },
-  plugins: [],
+  plugins: ['vue'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off'
   }

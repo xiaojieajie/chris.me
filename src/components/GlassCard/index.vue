@@ -5,40 +5,23 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { addUnit } from '@/utils'
-export default defineComponent({
-  name: 'GlassCard',
-  props: {
-    // width: {
-    //   type: [String, Number],
-    //   default: '100%'
-    // },
-    // height: {
-    //   type: [String, Number],
-    //   default: 'auto'
-    // },
-    radius: {
-      type: String,
-      default: '2rem'
-    },
-    blur: {
-      type: String,
-      default: '3px'
-    }
+<script lang="ts" setup>
+import { defineProps, computed } from 'vue'
+const props = defineProps({
+  radius: {
+    type: String,
+    default: '2rem'
   },
-  setup(props) {
-    const style = computed(() => ({
-      // width: addUnit(props.width),
-      // height: addUnit(props.height),
-      borderRadius: props.radius,
-      backdropFilter: `blur(${props.blur})`,
-      '--radius': props.radius
-    }))
-    return { style }
+  blur: {
+    type: String,
+    default: '3px'
   }
 })
+const style = computed(() => ({
+  borderRadius: props.radius,
+  backdropFilter: `blur(${props.blur})`,
+  '--radius': props.radius
+}))
 </script>
 
 <style lang="scss" scoped>
