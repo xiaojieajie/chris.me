@@ -1,5 +1,5 @@
 <template>
-  <GlassCard class="Left">
+  <GlassCard class="Left" blur="6px">
     <div class="content">
       <h1 class="title fontzy gradient-text">
         BLOG <span class="by">by</span> CHRIS
@@ -12,7 +12,7 @@
         >
         </el-avatar>
       </div>
-      <div class="btn-group flex">
+      <!-- <div class="btn-group flex">
         <button class="flex-center theme">
           <svg
             class="dark"
@@ -35,7 +35,7 @@
             ></path>
           </svg>
         </button>
-      </div>
+      </div> -->
       <LinerBtn
         class="linerBtn"
         border-color="#83af9b"
@@ -43,6 +43,7 @@
         before-bg-color="#83af9b"
         hover-color="#fff"
         inner-border-color="#C8C8A9"
+        @click="handleRead"
       >
         <span class="text">Read</span>
         <svg
@@ -67,10 +68,23 @@
 <script lang="ts" setup>
 import GlassCard from '@c/GlassCard/index.vue'
 import LinerBtn from './linerBtn.vue'
+import { inject, onMounted } from 'vue'
+interface fn {
+  (): void
+}
+let next: fn
+onMounted(() => {
+  next = inject('next') as fn
+})
+const handleRead = () => {
+  next()
+}
 </script>
 
 <style lang="scss" scoped>
 .Left {
+  position: relative;
+  z-index: 2;
   > .content {
     padding: 3rem;
     display: flex;
@@ -98,6 +112,7 @@ import LinerBtn from './linerBtn.vue'
     }
 
     .stage {
+      margin: 2rem 0 4rem;
       font-size: 0;
       .avatar {
         &:hover {
@@ -108,11 +123,11 @@ import LinerBtn from './linerBtn.vue'
     }
     .theme {
       padding: 0.8rem;
-      background-color: #eaeaea;
+      background-color: #f1f5f9;
       border-radius: 50%;
       border: none;
       outline: none;
-      transition: all ease-in-out 0.35s;
+      transition: all ease-in-out 0.2s;
       &:hover {
         cursor: pointer;
         background-color: #e2e8f0;
@@ -133,7 +148,65 @@ import LinerBtn from './linerBtn.vue'
         font-size: 2rem;
         margin: 0 2rem;
       }
-      // vertical-align: middle;
+    }
+  }
+}
+@media screen and (max-width: 991px) {
+  .Left {
+    flex: 1;
+    > .content {
+      .stage {
+        .avatar {
+          width: 10rem !important;
+          height: 10rem !important;
+        }
+      }
+      .theme {
+        padding: 0.8rem;
+        background-color: #f1f5f9;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+        transition: all ease-in-out 0.2s;
+        &:hover {
+          cursor: pointer;
+          background-color: #e2e8f0;
+        }
+        .dark,
+        .light {
+          color: rgba($color: #000000, $alpha: 0.75);
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+      }
+      .title {
+        font-size: 7rem;
+        line-height: 1.5;
+        .by {
+          font-size: 4rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .Left {
+    flex: 1;
+    > .content {
+      .stage {
+        .avatar {
+          width: 10rem !important;
+          height: 10rem !important;
+        }
+      }
+      .title {
+        font-size: 6rem;
+        flex-direction: column;
+        line-height: 1.5;
+        .by {
+          font-size: 3rem;
+        }
+      }
     }
   }
 }

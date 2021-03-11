@@ -5,7 +5,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, onBeforeUnmount, onMounted } from 'vue'
+import {
+  defineComponent,
+  ref,
+  watch,
+  onBeforeUnmount,
+  onMounted,
+  provide
+} from 'vue'
 import BScroll, { BScrollInstance, Options } from '@better-scroll/core'
 import Slide from '@better-scroll/slide'
 import MouseWheel from '@better-scroll/mouse-wheel'
@@ -142,6 +149,17 @@ export default defineComponent({
       scroll.value &&
         scroll.value.scrollToElement.apply(scroll.value, arguments as any)
     }
+    const next = () => {
+      scroll.value && scroll.value.next()
+    }
+    const prev = () => {
+      scroll.value && scroll.value.prev()
+    }
+    if (props.slide) {
+      provide('next', next)
+      provide('prev', prev)
+    }
+
     watch(props.data, () => {
       setTimeout(() => {
         refresh()
@@ -150,7 +168,14 @@ export default defineComponent({
     onBeforeUnmount(() => {
       scroll.value && scroll.value.destroy()
     })
-    return { wrapper, disable, enable, refresh, scrollTo, scrollToElement }
+    return {
+      wrapper,
+      disable,
+      enable,
+      refresh,
+      scrollTo,
+      scrollToElement
+    }
   }
 })
 </script>

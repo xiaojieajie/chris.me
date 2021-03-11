@@ -94,8 +94,10 @@ function parallax(event: MouseEvent) {
 
 <style lang="scss" scoped>
 .Right {
+  position: relative;
+  z-index: 1;
   user-select: none;
-  max-width: 52%;
+  width: 52%;
   margin-left: 7rem;
   display: flex;
   align-items: center;
@@ -112,6 +114,26 @@ function parallax(event: MouseEvent) {
       max-width: 100%;
       height: auto;
     }
+  }
+}
+@media screen and (max-width: 991px) {
+  .Right {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    width: 80vw;
+  }
+}
+@media screen and (max-width: 768px) {
+  .Right {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    width: 95vw;
   }
 }
 </style>
