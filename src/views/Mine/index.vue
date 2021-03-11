@@ -11,7 +11,7 @@
         target="_blank"
         >© 2021 Chris. 蜀ICP备2020037206号</el-link
       >
-      <div>
+      <div class="pics">
         <img
           class="pic1"
           src="http://blog.chrisying.cn/float-1.png"
