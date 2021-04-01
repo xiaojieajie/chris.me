@@ -1531,6 +1531,11 @@ vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.5.0:
     esquery "^1.4.0"
     lodash "^4.17.15"
 
+vue-lazyload-next@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npm.taobao.org/vue-lazyload-next/download/vue-lazyload-next-0.0.1.tgz#b455eb737bec668bca402e5e2230a1073bae9d55"
+  integrity sha1-tFXrc3vsZovKQC5eIjChBzuunVU=
+
 vue-router@^4.0.4:
   version "4.0.4"
   resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-4.0.4.tgz?cache=0&sync_timestamp=1613740784642&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-router%2Fdownload%2Fvue-router-4.0.4.tgz#ad9b4b7bbdad622407b4ff189b1646f48c1e9053"

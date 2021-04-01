@@ -7,21 +7,21 @@
 
 <script lang="ts" setup>
 import { defineProps, computed } from 'vue'
-interface PropsType {
-  radius: string
-  blur: string
-}
-// console.log(defineProps<PropsType>())
-const { radius = '2rem', blur = '3px' } = defineProps<{
-  radius: string
-  blur: string
-}>()
-console.log(blur)
+const props = defineProps({
+  radius: {
+    type: String,
+    default: '2rem'
+  },
+  blur: {
+    type: String,
+    default: '3px'
+  }
+})
 
 const style = computed(() => ({
-  borderRadius: radius,
-  backdropFilter: `blur(${blur})`,
-  '--radius': radius
+  borderRadius: props.radius,
+  backdropFilter: `blur(${props.blur})`,
+  '--radius': props.radius
 }))
 </script>
 

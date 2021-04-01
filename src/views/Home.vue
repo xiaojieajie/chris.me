@@ -35,6 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 #home {
+  height: 100%;
   background: rgb(143, 170, 217);
   padding: 40px;
 }

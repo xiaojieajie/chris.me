@@ -5,7 +5,7 @@
         v-for="(src, i) in realImgs"
         :key="src"
         :ref="i === 0 ? 'img_0_ref' : ''"
-        v-lazy="src"
+        :src="src"
         :class="i !== 0 ? 'pa' : ''"
         :style="imgStyles[i]"
         alt="loading fail"
