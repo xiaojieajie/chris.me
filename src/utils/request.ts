@@ -1,15 +1,13 @@
 import { ResponseData } from '@/types/request'
 import axios, { AxiosResponse } from 'axios'
 import CancelToken from './cancelToken'
-// import type { Result } from './type'
-// import { getToken, removeToken } from '/@/utils/auth'
 import router from "@/router"
 import { getToken } from './storage'
 
 const message = (window as any).$message
 const url = ''
 const instance = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? `/jshERP-boot` : url,
+  baseURL: process.env.NODE_ENV === 'development' ? `/api` : url,
   timeout: 50000
 })
 
