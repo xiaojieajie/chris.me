@@ -1,15 +1,16 @@
-import CancelToken from '@/utils/cancelToken'
-import { getToken } from '@/utils/storage'
+import { CancelToken } from '@/utils'
+import { getToken } from '@/utils'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', component: () => import('@c/Layout/index.vue') },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/login/index.vue')
+    path: '/', component: () => import('@c/Layout/Main.vue'),
+    children: [
+      { path: '/', component: () => import('@v/main/Home.vue') }
+    ]
   },
-  { path: '/404', name: '404', component: () => import('@/views/404.vue') }
+  { path: '/login', component: () => import('@v/Login.vue') },
+  { path: '/404', component: () => import('@v/404.vue') }
 ]
 
 const router = createRouter({
@@ -17,7 +18,7 @@ const router = createRouter({
   routes
 })
 
-const whitePaths = ['/login', '/register']
+const whitePaths = ['/login']
 
 router.beforeEach((to, from, next) => {
   CancelToken.clearPending() // 路由跳转清空发出的请求
@@ -31,11 +32,12 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
-    if (whitePaths.includes(to.fullPath)) {
-      next() // 无token，白名单内可跳转
-    } else {
-      next({ path: '/login' })
-    }
+    // if (whitePaths.includes(to.fullPath)) {
+    //   next() // 无token，白名单内可跳转
+    // } else {
+    //   next({ path: '/login' })
+    // }
+    next()
   }
 })
 

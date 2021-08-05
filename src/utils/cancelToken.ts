@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
 
-export default class CancelToken {
+export class CancelToken {
   // 声明一个 Map 用于存储每个请求的标识 和 取消函数
   private static pending: Map<string, Canceler> = new Map()
   // 白名单, 写入接口名称

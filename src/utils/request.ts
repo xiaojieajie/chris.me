@@ -1,6 +1,6 @@
-import { ResponseData } from '@/types/request'
+import type { ResponseData } from '@/types/request'
 import axios, { AxiosResponse } from 'axios'
-import CancelToken from './cancelToken'
+import { CancelToken } from './cancelToken'
 import router from "@/router"
 import { getToken } from './storage'
 

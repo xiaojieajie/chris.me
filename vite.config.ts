@@ -10,7 +10,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': pathResolve('src'),
-      '@c': pathResolve('src/components')
+      '@c': pathResolve('src/components'),
+      '@v': pathResolve('src/views')
     }
   }
 })
