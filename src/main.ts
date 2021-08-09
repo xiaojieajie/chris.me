@@ -3,7 +3,9 @@ import App from './App.vue'
 import router from '@/router'
 import { store, key } from '@/store'
 
-import '@/style/index.scss'
+import 'vfonts/FiraCode.css' // 字体
+import '@/style/tailwind.css' // tailwind css
+import '@/style/index.scss' // 全局样式
 
 const app = createApp(App)
 
