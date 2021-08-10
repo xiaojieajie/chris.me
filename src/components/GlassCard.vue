@@ -14,8 +14,8 @@ const props = withDefaults(defineProps<{
     height?: string | number
     radius?: string | number
 }>(), {
-    width: 600,
-    height: 350,
+    width: '100%',
+    height: '100%',
     radius: 20
 })
 
