@@ -11,21 +11,34 @@
                 <MenuOutline />
             </n-icon>
             <div class="flex flex-col items-center">
-                <n-icon class="mb-4 cursor-pointer" color="#be95c4" size="20">
-                    <LogoGithub />
-                </n-icon>
+                <n-a class="mb-4" href="https://github.com/chris-zhu" target="_blank">
+                    <n-icon color="#be95c4" size="20">
+                        <LogoGithub />
+                    </n-icon>
+                </n-a>
+
                 <n-icon class="mb-4 cursor-pointer" color="#be95c4" size="20">
                     <LogoGoogle />
                 </n-icon>
+
+                <n-popover trigger="hover" placement="right">
+                    <template #trigger>
+                        <n-icon class="mb-4 cursor-pointer" color="#be95c4" size="20">
+                            <Aperture />
+                        </n-icon>
+                    </template>
+                    <span>/* TODO 将跳转我的摄影网站 待开发 */</span>
+                </n-popover>
+
                 <n-icon class="cursor-pointer" color="#be95c4" size="20">
                     <LogoWechat />
                 </n-icon>
             </div>
         </div>
-        <div class="right flex-1">
+        <div class="right flex-1 flex flex-col">
             <div class="head flex justify-end items-center">
-                <div class="mr-8 text-red-50 cursor-pointer">HOME</div>
-                <div class="mr-8 text-red-50 cursor-pointer">CONTACT</div>
+                <router-link class="mr-8 text-red-50" to="/">HOME</router-link>
+                <router-link class="mr-8 text-red-50" to="/">CONTACT</router-link>
                 <div
                     style="width: 40px;height:40px;border:1px solid #fff;"
                     class="flex justify-center items-center rounded-full cursor-pointer"
@@ -35,6 +48,7 @@
                     </n-icon>
                 </div>
             </div>
+            <div class="body flex-1"></div>
         </div>
     </div>
     <!-- <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
@@ -52,9 +66,8 @@
 
 <script lang='ts' setup>
 import { ref, reactive } from 'vue'
-import { RouterLink } from 'vue-router'
-import { NAvatar, NIcon } from 'naive-ui'
-import { Person, MenuOutline, LogoGoogle, LogoGithub, LogoWechat, LogoOctocat } from '@vicons/ionicons5'
+import { NAvatar, NIcon, NPopover, NA } from 'naive-ui'
+import { Aperture, Person, MenuOutline, LogoGoogle, LogoGithub, LogoWechat, LogoOctocat } from '@vicons/ionicons5'
 
 </script>
 <style lang='scss' scoped>

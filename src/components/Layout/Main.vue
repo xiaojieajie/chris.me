@@ -1,6 +1,6 @@
 <template>
   <!-- <Aside /> -->
-  <div class="p-6">
+  <main class="p-6">
     <GlassCard width="100%" height="auto" class="mx-auto">
       <router-view v-slot="{ Component }">
         <transition name="fade">
@@ -8,7 +8,7 @@
         </transition>
       </router-view>
     </GlassCard>
-  </div>
+  </main>
 </template>
 
 <script lang='ts' setup>
