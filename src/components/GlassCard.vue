@@ -6,7 +6,7 @@
 </template>
 
 <script lang='ts' setup>
-import { defineProps, withDefaults, computed } from 'vue'
+import { computed } from 'vue'
 import { addUnit } from '@/utils'
 
 const props = withDefaults(defineProps<{

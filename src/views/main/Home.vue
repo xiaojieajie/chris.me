@@ -23,22 +23,18 @@
 
                 <n-popover trigger="hover" placement="right">
                     <template #trigger>
-                        <n-icon class="mb-4 cursor-pointer" color="#be95c4" size="20">
+                        <n-icon class="cursor-pointer" color="#be95c4" size="20">
                             <Aperture />
                         </n-icon>
                     </template>
                     <span>/* TODO 将跳转我的摄影网站 待开发 */</span>
                 </n-popover>
-
-                <n-icon class="cursor-pointer" color="#be95c4" size="20">
-                    <LogoWechat />
-                </n-icon>
             </div>
         </div>
         <div class="right flex-1 flex flex-col">
             <div class="head flex justify-end items-center">
                 <router-link class="mr-8 text-red-50" to="/">HOME</router-link>
-                <router-link class="mr-8 text-red-50" to="/">CONTACT</router-link>
+                <router-link class="mr-8 text-red-50" to="/post">CONTACT</router-link>
                 <div
                     style="width: 40px;height:40px;border:1px solid #fff;"
                     class="flex justify-center items-center rounded-full cursor-pointer"
@@ -60,14 +56,12 @@
             <p class="text-gray-500">You have a new === message!@#$%^&*()</p>
         </div>
     </div>-->
-
-    <!-- <GlassCard v-for="i in 5" class="mx-auto mt-5 p-10">玻璃拟态</GlassCard> -->
 </template>
 
 <script lang='ts' setup>
 import { ref, reactive } from 'vue'
 import { NAvatar, NIcon, NPopover, NA } from 'naive-ui'
-import { Aperture, Person, MenuOutline, LogoGoogle, LogoGithub, LogoWechat, LogoOctocat } from '@vicons/ionicons5'
+import { Aperture, Person, MenuOutline, LogoGoogle, LogoGithub } from '@vicons/ionicons5'
 
 </script>
 <style lang='scss' scoped>
