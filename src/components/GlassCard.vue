@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{
 }>(), {
     width: '100%',
     height: '100%',
-    radius: 20
+    radius: 12
 })
 
 const c_width = computed(() => addUnit(props.width))

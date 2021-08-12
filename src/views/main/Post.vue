@@ -10,50 +10,51 @@
         </div>
         <div class="flex">
             <div class="left flex-shrink-0 mr-8 py-12 w-1/5">
-                <GlassCard class="sticky top-32"  height="auto">
+                <GlassCard class="sticky top-32" height="auto">
                     <div class="h-20"></div>
                 </GlassCard>
             </div>
-
-            <ul class="flex-1 divide-y divide-gray-200">
-                <li v-for="i in 10" class="py-12">
-                    <article
-                        class="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline"
-                    >
-                        <dl>
-                            <dt class="sr-only">Published on</dt>
-                            <dd class="text-base font-medium text-gray-500">
-                                <time>July 29, 2021</time>
-                            </dd>
-                        </dl>
-                        <div class="space-y-5 xl:col-span-3">
-                            <div class="space-y-6">
-                                <h2 class="text-2xl font-bold tracking-tight">
-                                    <a
-                                        class="text-gray-900"
-                                        href="/headless-ui-v1-4"
-                                    >Headless UI v1.4: The One With Tabs</a>
-                                </h2>
-                                <div class="prose max-w-none text-gray-500">
-                                    <div class="prose max-w-none">
-                                        <n-ellipsis
-                                            expand-trigger="click"
-                                            line-clamp="3"
-                                            :tooltip="false"
-                                        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, cum rem porro eaque aperiam esse quia libero tempora modi, nulla et autem expedita quo tempore, consequatur fuga minus nostrum sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis veritatis error quia, corrupti vel assumenda vero unde minima beatae sunt aliquam accusantium provident perspiciatis adipisci molestiae suscipit? Beatae, sed animi.Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente possimus et consequuntur soluta! Enim a pariatur exercitationem! Reprehenderit eum voluptatum expedita voluptas, quo aspernatur ducimus laudantium necessitatibus nisi porro veniam.</n-ellipsis>
+            <List>
+                <ul class="flex-1 divide-y divide-gray-200">
+                    <li v-for="i in 1" class="py-12">
+                        <article
+                            class="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline"
+                        >
+                            <dl>
+                                <dt class="sr-only">Published on</dt>
+                                <dd class="text-base font-medium text-gray-500">
+                                    <time>July 29, 2021</time>
+                                </dd>
+                            </dl>
+                            <div class="space-y-5 xl:col-span-3">
+                                <div class="space-y-6">
+                                    <h2 class="text-2xl font-bold tracking-tight">
+                                        <a
+                                            class="text-gray-900"
+                                            href="/headless-ui-v1-4"
+                                        >Headless UI v1.4: The One With Tabs</a>
+                                    </h2>
+                                    <div class="prose max-w-none text-gray-500">
+                                        <div class="prose max-w-none">
+                                            <n-ellipsis
+                                                expand-trigger="click"
+                                                line-clamp="3"
+                                                :tooltip="false"
+                                            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, cum rem porro eaque aperiam esse quia libero tempora modi, nulla et autem expedita quo tempore, consequatur fuga minus nostrum sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis veritatis error quia, corrupti vel assumenda vero unde minima beatae sunt aliquam accusantium provident perspiciatis adipisci molestiae suscipit? Beatae, sed animi.Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente possimus et consequuntur soluta! Enim a pariatur exercitationem! Reprehenderit eum voluptatum expedita voluptas, quo aspernatur ducimus laudantium necessitatibus nisi porro veniam.</n-ellipsis>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="text-base font-medium">
+                                    <router-link
+                                        to="/"
+                                        class="text-white hover:text-teal-700"
+                                    >Read more →</router-link>
+                                </div>
                             </div>
-                            <div class="text-base font-medium">
-                                <router-link
-                                    to="/"
-                                    class="text-white hover:text-teal-700"
-                                >Read more →</router-link>
-                            </div>
-                        </div>
-                    </article>
-                </li>
-            </ul>
+                        </article>
+                    </li>
+                </ul>
+            </List>
         </div>
     </div>
 </template>
@@ -62,6 +63,7 @@
 import { ref, reactive } from 'vue'
 import { NH1, NP, NEllipsis, NAffix, NTag } from 'naive-ui'
 import GlassCard from '@c/GlassCard.vue'
+import List from '@/components/List/index.vue'
 
 // const containerRef = ref<HTMLElement | null>(null)
 
