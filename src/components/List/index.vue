@@ -25,11 +25,12 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, reactive, nextTick, onUnmounted, onMounted, watch } from 'vue'
+import { ref, reactive, nextTick, onUnmounted, onMounted, watch, onUpdated } from 'vue'
 import { NSpin, NGradientText, NIcon } from 'naive-ui'
 import { WarningOutline } from '@vicons/ionicons5'
 import { useScrollParent, isHidden } from './useScrollParent'
 import { useRect } from './useRect'
+import { useEventListener } from './useEventListener'
 
 interface IProps {
   loading?: boolean
@@ -59,14 +60,13 @@ const props = withDefaults(defineProps<IProps>(), {
 
 const emit = defineEmits(['load', 'update:error', 'update:loading'])
 
+defineExpose({ check })
+
 const root = ref<HTMLElement>()
 const placeholder = ref<HTMLElement>()
 
-
-
 const loading = ref(false)
 const scrollParent = useScrollParent(root)
-
 
 function check() {
   // 监听组件的状态
@@ -96,18 +96,25 @@ function check() {
   })
 }
 
-watch([() => props.loading, () => props.finished, () => props.error], check)
-
 function clickErrorText() {
   emit('update:error', false)
   check()
 }
 
-onUnmounted(() => {
-  // 卸载组件
+useEventListener('scroll', check, {
+  target: scrollParent
 })
 
+watch([() => props.loading, () => props.finished, () => props.error], check)
+
+onMounted(() => {
+  if (props.immediateCheck) {
+    check()
+  }
+})
+
+onUpdated(() => {
+  loading.value = props.loading
+})
 
 </script>
-<style lang='scss' scoped>
-</style>

@@ -1,8 +1,7 @@
 import { ref, onMounted } from 'vue'
-import { inBrowser } from '@/utils'
 import { Ref, unref } from 'vue'
+
 const overflowScrollReg = /scroll|auto/i
-const defaultRoot = inBrowser ? window : undefined
 
 function isElement(node: Element) {
   const ELEMENT_NODE_TYPE = 1
@@ -15,7 +14,7 @@ function isElement(node: Element) {
 
 export function getScrollParent(
   el: Element,
-  root = defaultRoot
+  root = window
 ): Window | Element | undefined {
   let node = el
 
@@ -32,11 +31,8 @@ export function getScrollParent(
   return root
 }
 
-export function useScrollParent(
-  el: Ref<Element | undefined>,
-  root = defaultRoot
-) {
-  let scrollParent = ref()
+export function useScrollParent(el: Ref<Element | undefined>, root = window) {
+  const scrollParent = ref<Window | Element | undefined>()
   onMounted(() => {
     if (el.value) {
       scrollParent.value = getScrollParent(el.value, root)

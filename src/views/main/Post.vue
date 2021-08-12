@@ -14,9 +14,9 @@
                     <div class="h-20"></div>
                 </GlassCard>
             </div>
-            <List>
+            <List @load="loadFn" >
                 <ul class="flex-1 divide-y divide-gray-200">
-                    <li v-for="i in 1" class="py-12">
+                    <li v-for="i in 10" class="py-12">
                         <article
                             class="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline"
                         >
@@ -64,6 +64,12 @@ import { ref, reactive } from 'vue'
 import { NH1, NP, NEllipsis, NAffix, NTag } from 'naive-ui'
 import GlassCard from '@c/GlassCard.vue'
 import List from '@/components/List/index.vue'
+
+const loading = ref(false)
+
+function loadFn() {
+    console.log(11)
+}
 
 // const containerRef = ref<HTMLElement | null>(null)
 
