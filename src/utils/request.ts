@@ -34,19 +34,7 @@ instance.interceptors.response.use(
   (res: AxiosResponse<ResponseData>) => {
     const { data } = res
     if (res.status !== 200) {
-      message.error('网络错误')
       return Promise.reject(data.message || 'error')
-    }
-    // 未登录
-    if (data.code === 600) {
-      message.error(data.message)
-      router.push({
-        path: '/login',
-        query: {
-          fromurl: window.location.href
-        }
-      })
-      return Promise.reject(res)
     }
     if (data.code === 0) {
       return Promise.reject(res)

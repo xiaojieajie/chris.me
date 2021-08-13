@@ -70,6 +70,7 @@ import { ref, reactive } from 'vue'
 import { NH1, NP, NEllipsis } from 'naive-ui'
 import GlassCard from '@c/GlassCard.vue'
 import List from '@/components/List/index.vue'
+import { Base } from '@/api'
 
 const state = reactive<{
     list: any[],
@@ -107,6 +108,35 @@ const onLoad = () => {
 
 
 // const fnRef = () => containerRef.value
+
+
+
+// // a.js
+// const fn = () => ({ a: 1, b: 2 })
+
+
+// const obj = fn()
+
+// //  module.exports = obj   正确
+
+// // export default obj   错误
+
+
+// // b.js
+// import { a } from './a'
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>

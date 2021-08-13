@@ -13,5 +13,13 @@ export default defineConfig({
       '@c': pathResolve('src/components'),
       '@v': pathResolve('src/views')
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:2430',
+        changeOrigin: true
+      }
+    }
   }
 })
