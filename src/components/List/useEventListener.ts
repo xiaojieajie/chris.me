@@ -1,8 +1,7 @@
 import { watch, isRef, unref, onUnmounted, onDeactivated } from 'vue'
 import { onMountedOrActivated } from './onMountedOrActivated'
-import { inBrowser } from '@/utils'
 import type { Ref } from 'vue'
-export var supportsPassive = false
+export let supportsPassive = false
 
 type TargetRef = EventTarget | Ref<EventTarget | undefined>
 
@@ -17,15 +16,11 @@ export function useEventListener(
   listener: () => void,
   options: IOpts
 ) {
-  if (!inBrowser) {
-    return
-  }
+  let { target = window, passive = false, capture = false } = options
+  let attached = false
 
-  var { target = window, passive = false, capture = false } = options
-  var attached = false
-
-  var add = (target: any) => {
-    var element = unref(target)
+  let add = (target: any) => {
+    let element = unref(target)
 
     if (element && !attached) {
       element.addEventListener(
@@ -42,8 +37,8 @@ export function useEventListener(
     }
   }
 
-  var remove = (target: any) => {
-    var element = unref(target)
+  let remove = (target: any) => {
+    let element = unref(target)
 
     if (element && attached) {
       element.removeEventListener(type, listener, capture)

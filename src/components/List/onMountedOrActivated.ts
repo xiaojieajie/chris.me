@@ -1,6 +1,6 @@
 import { nextTick, onMounted, onActivated } from 'vue'
 export function onMountedOrActivated(hook: () => void) {
-  var mounted = false
+  let mounted = false
   onMounted(() => {
     hook()
     nextTick(() => {

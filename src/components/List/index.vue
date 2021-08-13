@@ -2,12 +2,12 @@
   <div class="list" ref="root">
     <slot />
     <!-- loading -->
-    <div class="flex justify-center items-center" key="loading">
+    <div v-if="loading" class="flex justify-center items-center" key="loading">
       <n-spin :size="12" />
       <NGradientText class="ml-2">{{ loadingText }}</NGradientText>
     </div>
     <!-- error -->
-    <div class="text-center" key="error">
+    <div v-if="error" class="text-center" key="error">
       <div class="flex justify-center items-center" @click="clickErrorText">
         <n-icon :size="14" color="#D54562">
           <WarningOutline />
@@ -16,7 +16,7 @@
       </div>
     </div>
     <!-- finish -->
-    <div class="flex justify-center items-center" key="finish">
+    <div v-if="finished" class="flex justify-center items-center" key="finish">
       <NGradientText type="info" class="ml-2">{{ finishedText }}</NGradientText>
     </div>
     <!-- placeholder -->
@@ -25,7 +25,7 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, reactive, nextTick, onUnmounted, onMounted, watch, onUpdated } from 'vue'
+import { ref, nextTick, onMounted, watch, onUpdated } from 'vue'
 import { NSpin, NGradientText, NIcon } from 'naive-ui'
 import { WarningOutline } from '@vicons/ionicons5'
 import { useScrollParent, isHidden } from './useScrollParent'

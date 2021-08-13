@@ -14,9 +14,15 @@
                     <div class="h-20"></div>
                 </GlassCard>
             </div>
-            <List @load="loadFn" >
-                <ul class="flex-1 divide-y divide-gray-200">
-                    <li v-for="i in 10" class="py-12">
+            <List
+                class="flex-1"
+                v-model:loading="state.loading"
+                v-model:error="state.error"
+                :finished="state.finished"
+                @load="onLoad"
+            >
+                <ul class="divide-y divide-gray-200">
+                    <li v-for="i in state.list" class="py-12">
                         <article
                             class="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline"
                         >
@@ -61,17 +67,44 @@
 
 <script lang='ts' setup>
 import { ref, reactive } from 'vue'
-import { NH1, NP, NEllipsis, NAffix, NTag } from 'naive-ui'
+import { NH1, NP, NEllipsis } from 'naive-ui'
 import GlassCard from '@c/GlassCard.vue'
 import List from '@/components/List/index.vue'
 
-const loading = ref(false)
+const state = reactive<{
+    list: any[],
+    loading: boolean,
+    finished: boolean,
+    error: boolean
+}>({
+    list: [],
+    loading: false,
+    finished: false,
+    error: false
+})
 
-function loadFn() {
-    console.log(11)
-}
+const onLoad = () => {
+    setTimeout(() => {
+        for (let i = 0; i < 5; i++) {
+            state.list.push(state.list.length + 1);
+        }
+
+        // 加载状态结束
+        state.loading = false;
+        // 数据全部加载完成
+        if (state.list.length == 10) {
+            state.error = true;
+        }
+
+        // 数据全部加载完成
+        if (state.list.length >= 20) {
+            state.finished = true;
+        }
+    }, 1000);
+};
 
 // const containerRef = ref<HTMLElement | null>(null)
+
 
 // const fnRef = () => containerRef.value
 
