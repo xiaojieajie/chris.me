@@ -72,6 +72,8 @@ import GlassCard from '@c/GlassCard.vue'
 import List from '@/components/List/index.vue'
 import { Base } from '@/api'
 
+Base.hello()
+
 const state = reactive<{
     list: any[],
     loading: boolean,
@@ -103,27 +105,6 @@ const onLoad = () => {
         }
     }, 1000);
 };
-
-// const containerRef = ref<HTMLElement | null>(null)
-
-
-// const fnRef = () => containerRef.value
-
-
-
-// // a.js
-// const fn = () => ({ a: 1, b: 2 })
-
-
-// const obj = fn()
-
-// //  module.exports = obj   正确
-
-// // export default obj   错误
-
-
-// // b.js
-// import { a } from './a'
 
 
 

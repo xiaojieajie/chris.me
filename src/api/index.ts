@@ -1,6 +1,6 @@
 import { initnal, METHOD_ENUM, IModules } from './init'
 
-let modules: IModules = {
+const modules: IModules = {
   Post: {
     list: { methods: METHOD_ENUM.GET, url: '/list' } // /post/list
   },
@@ -10,6 +10,4 @@ let modules: IModules = {
   }
 }
 
-console.log(initnal(modules))
-
-export const module = initnal(modules)
+export const { Base, Post } = initnal(modules)
