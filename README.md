@@ -12,7 +12,7 @@
 
 - [ ] components
 -  - [x] List组件
--  - [ ] Upload组件
+-  - [x]  Upload组件
 
 
 
